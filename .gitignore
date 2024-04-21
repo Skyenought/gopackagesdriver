@@ -23,7 +23,6 @@ go.work
 
 generator
 parser
-tool
 *.log
 *.json
 *.mjs
