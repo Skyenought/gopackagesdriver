@@ -25,7 +25,7 @@ func init() {
 	flag.StringVar(&allForOnePackagesJSONPath, "merge", "", "")
 
 	keyword = getenvDefault("CWGO_GOPACKAGESDRIVER_KEYWORD", "kitex_gen")
-	keyword = getenvDefault("CWGO_GOPACKAGESDRIVER_MERGE", "")
+	allForOnePackagesJSONPath = getenvDefault("CWGO_GOPACKAGESDRIVER_MERGE", "/Users/skyenought/gopath/src/cwgo_all.json")
 }
 
 func main() {

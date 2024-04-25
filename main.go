@@ -19,7 +19,8 @@ import (
 )
 
 var (
-	keyword = getenvDefault("CWGO_GOPACKAGESDRIVER_KEYWORD", "kitex_gen")
+	keyword                   = getenvDefault("CWGO_GOPACKAGESDRIVER_KEYWORD", "kitex_gen")
+	allForOnePackagesJSONPath = getenvDefault("CWGO_GOPACKAGESDRIVER_MERGE", "/Users/skyenought/gopath/src/github.com/cloudwego/usage/cwgo_gopackagesdriver.json")
 )
 
 func main() {
@@ -110,7 +111,8 @@ var (
 // - 通过约定关键字确定需要的信息
 // - 返回目标值
 func getTargetPackages() (packages.DriverResponse, error) {
-	file := "/Users/skyenought/gopath/src/github.com/cloudwego/usage/cwgo_gopackagedriver.json"
+	// TODO: env var
+	file := allForOnePackagesJSONPath
 	// 获取文件信息
 	fileInfo, err := os.Stat(file)
 	if err != nil {
@@ -170,6 +172,7 @@ func calculateFileHash(file string) (string, error) {
 	// 返回哈希值的字符串表示
 	return hex.EncodeToString(h.Sum(nil)), nil
 }
+
 func signalContext(parentCtx context.Context, signals ...os.Signal) (ctx context.Context, stop context.CancelFunc) {
 	ctx, cancel := context.WithCancel(parentCtx)
 	ch := make(chan os.Signal, 1)
